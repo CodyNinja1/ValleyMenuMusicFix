@@ -50,7 +50,7 @@ void Main()
         // Update the current variables
         Current::EditorAvailable = App.Editor !is null;
 
-        // If no menus are found (we are in editor)
+        // If no menus are found (we are in editor probably)
         if (App.ActiveMenus.Length == 0) 
         {
             // There is no music to patch in editor, so we haven't patched it yet
@@ -83,7 +83,7 @@ void Main()
                         (C::UnallowedMenuNames.Find(Current::MenuName) < 0 and Current::MenuName != Previous::MenuName)
                         or
                         // ...or if we have exited the editor
-                        (!Current::EditorAvailable and Current::EditorAvailable != Previous::EditorAvailable)
+                        !Current::EditorAvailable
                     )
                     {
                         // Stopping and starting the music makes it start from zero.
@@ -100,11 +100,25 @@ void Main()
             }
         }
 
-
         // Update tracked variables
         Previous::EditorAvailable = Current::EditorAvailable;
         Previous::MenuName = Current::MenuName;
         
         yield();
     }
+}
+
+void Render()
+{
+    UI::Begin("VMMF");
+
+    UI::Text("Current.MenuName: " + tostring(Current::MenuName));
+    UI::Text("Current.EditorAvailable: " + tostring(Current::EditorAvailable));
+
+    UI::Text("Previous.MenuName: " + tostring(Previous::MenuName));
+    UI::Text("Previous.EditorAvailable: " + tostring(Previous::EditorAvailable));
+
+    UI::Text("HasPatched: " + tostring(HasPatchedMusic));
+
+    UI::End();
 }
