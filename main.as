@@ -67,7 +67,7 @@ void Main()
 
         CAudioSource@ MusicSrc = GetMusicAudioSource(App);
         // If there is music playing...
-        if (MusicSrc !is null)
+        if (MusicSrc !is null and MusicSrc.PlugSound.PlugFile !is null)
         {
             // ...make sure that it is the valley main menu theme by the filename
             // (prone to error (because some titlepacks just replace it without changing filename), but eh)
@@ -107,4 +107,3 @@ void Main()
         yield();
     }
 }
-
