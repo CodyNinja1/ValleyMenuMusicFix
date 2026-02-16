@@ -108,17 +108,3 @@ void Main()
     }
 }
 
-void Render()
-{
-    UI::Begin("VMMF");
-
-    UI::Text("Current.MenuName: " + tostring(Current::MenuName));
-    UI::Text("Current.EditorAvailable: " + tostring(Current::EditorAvailable));
-
-    UI::Text("Previous.MenuName: " + tostring(Previous::MenuName));
-    UI::Text("Previous.EditorAvailable: " + tostring(Previous::EditorAvailable));
-
-    UI::Text("HasPatched: " + tostring(HasPatchedMusic));
-
-    UI::End();
-}
